@@ -1,6 +1,6 @@
 {
   "name": "blockquote-agents",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official Blockquote JavaScript SDK and CLI for AI visibility scans",
   "type": "module",
   "main": "index.js",
@@ -24,7 +24,7 @@
   "homepage": "https://blockquote.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArneFfm/blockquote-agents",
+    "url": "git+https://github.com/ArneFfm/blockquote-agents.git",
     "directory": "packages/sdk-js"
   }
 }
