@@ -3,12 +3,12 @@
 Official client for [Blockquote](https://blockquote.io). Requires Node.js 20 or later. No runtime dependencies.
 
 ```sh
-npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz
+npm install blockquote-agents
 npm exec -- blockquote --help
 npm exec -- blockquote read SCAN_ID
 ```
 
-npm registry publication is pending. Install the official release archive above.
+The package is published on [npm](https://www.npmjs.com/package/blockquote-agents). The [GitHub release archive](https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz) remains available.
 
 ```js
 import { Blockquote, BlockquoteError } from "blockquote-agents";

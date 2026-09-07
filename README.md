@@ -5,11 +5,11 @@ Official integrations for [Blockquote](https://blockquote.io), an AI citability 
 ## Install
 
 - Skills: `npx skills add ArneFfm/blockquote-agents`
-- JavaScript SDK: `npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz`
+- JavaScript SDK: `npm install blockquote-agents`
 - CLI: `python -m pip install --upgrade blockquote-agents`, then `blockquote --help`.
 - Python SDK: `pip install blockquote-agents`
 
-npm registry publication is pending account two-factor verification. Python is published on [PyPI](https://pypi.org/project/blockquote-agents/).
+JavaScript is published on [npm](https://www.npmjs.com/package/blockquote-agents). Python is published on [PyPI](https://pypi.org/project/blockquote-agents/).
 
 The portable Agent Plugins manifest is `plugin.json`. Its `mcp.json` connects to the product MCP server.
 The three product skills cover API access, the scan/fix/re-scan workflow, and comparisons of completed reports.
