@@ -1,0 +1,23 @@
+name: Publish Python SDK
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/blockquote-agents
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download the tested release wheel
+        run: |
+          mkdir dist
+          curl --fail --location --output dist/blockquote_agents-0.1.0-py3-none-any.whl https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote_agents-0.1.0-py3-none-any.whl
+          echo '6bc9f6971301e532dc7839fcc7f4ca0760a5ae784a52a923b5531f9db0f1e19d  dist/blockquote_agents-0.1.0-py3-none-any.whl' | sha256sum --check
+      - name: Publish through PyPI trusted publishing
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
