@@ -6,13 +6,19 @@ Official integrations for [Blockquote](https://blockquote.io), an AI citability 
 
 - Skills: `npx skills add ArneFfm/blockquote-agents`
 - JavaScript SDK: `npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz`
-- CLI: Run `blockquote --help` after installing the JavaScript package.
+- CLI: Run `npm exec -- blockquote --help` after installing the JavaScript package.
 - Python SDK: `pip install blockquote-agents`
 
 npm registry publication is pending account two-factor verification. Python is published on [PyPI](https://pypi.org/project/blockquote-agents/).
 
 The portable Agent Plugins manifest is `plugin.json`. Its `mcp.json` connects to the product MCP server.
-The two product skills cover API access and the scan/fix/re-scan workflow.
+The three product skills cover API access, the scan/fix/re-scan workflow, and comparisons of completed reports.
+
+- [blockquote](skills/blockquote/SKILL.md): product API and MCP access.
+- [ai-citability-audit](skills/ai-citability-audit/SKILL.md): scan a page and apply evidence-backed fixes.
+- [report-comparison](skills/report-comparison/SKILL.md): compare reports without starting scans.
+
+Install comparison only: `npx skills add ArneFfm/blockquote-agents --skill report-comparison`.
 
 ## Interfaces
 
@@ -37,5 +43,5 @@ No client retries automatically.
 
 ```sh
 node --test packages/sdk-js/test.js
-python3 -m unittest discover -s packages/sdk-python/tests -p 'test_*.py'
+PYTHONPATH=packages/sdk-python python3 -m unittest discover -s packages/sdk-python/tests -p 'test_*.py'
 ```

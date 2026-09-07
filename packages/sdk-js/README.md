@@ -3,10 +3,12 @@
 Official client for [Blockquote](https://blockquote.io). Requires Node.js 20 or later. No runtime dependencies.
 
 ```sh
-npm install blockquote-agents
-npx blockquote-agents --help
-npx blockquote-agents read SCAN_ID
+npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz
+npm exec -- blockquote --help
+npm exec -- blockquote read SCAN_ID
 ```
+
+npm registry publication is pending. Install the official release archive above.
 
 ```js
 import { Blockquote, BlockquoteError } from "blockquote-agents";
@@ -37,9 +39,9 @@ The CLI reads `BLOCKQUOTE_API_KEY` and optional `BLOCKQUOTE_TURNSTILE_TOKEN` fro
 It prints response data, status, and headers as JSON. Failures go to stderr with exit code 1.
 
 ```sh
-blockquote scan https://example.com --idempotency-key UNIQUE_REQUEST_ID
-blockquote read SCAN_ID
-blockquote compare BASELINE_ID NEW_ID
+npm exec -- blockquote scan https://example.com --idempotency-key UNIQUE_REQUEST_ID
+npm exec -- blockquote read SCAN_ID
+npm exec -- blockquote compare BASELINE_ID NEW_ID
 npm test
 ```
 
