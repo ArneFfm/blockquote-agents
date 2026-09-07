@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "blockquote",
+  "version": "1.0.0",
+  "description": "Scan public pages for AI citability, read reports, and apply ranked fixes.",
+  "homepage": "https://blockquote.io/docs/ai-agents",
+  "keywords": [
+    "ai-citability",
+    "seo",
+    "mcp"
+  ],
+  "repository": "https://github.com/ArneFfm/blockquote-agents"
+}
