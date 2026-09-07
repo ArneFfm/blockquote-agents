@@ -1,0 +1,50 @@
+name: Publish JavaScript SDK
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate the package without publishing
+        type: boolean
+        required: true
+        default: true
+permissions:
+  contents: read
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: packages/sdk-js
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify npm supports trusted publishing
+        run: |
+          node --version
+          npm --version
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import { execFileSync } from 'node:child_process';
+          const [major, minor, patch] = execFileSync('npm', ['--version'], { encoding: 'utf8' }).trim().split('.').map(Number);
+          assert.ok(major > 11 || (major === 11 && (minor > 5 || (minor === 5 && patch >= 1))), 'npm >= 11.5.1 is required');
+          JS
+      - name: Test SDK and CLI
+        run: npm test
+      - name: Validate package without publishing
+        if: inputs.dry_run
+        run: npm publish --dry-run --access public --registry https://registry.npmjs.org
+      - name: Publish through npm trusted publishing
+        if: inputs.dry_run == false
+        run: npm publish --access public --provenance --registry https://registry.npmjs.org

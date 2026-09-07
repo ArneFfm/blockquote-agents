@@ -45,3 +45,18 @@ No client retries automatically.
 node --test packages/sdk-js/test.js
 PYTHONPATH=packages/sdk-python python3 -m unittest discover -s packages/sdk-python/tests -p 'test_*.py'
 ```
+
+## Publish the JavaScript SDK
+
+The manual [Publish JavaScript SDK workflow](.github/workflows/publish-npm.yml) runs only on `main` with GitHub-hosted runners.
+It tests the SDK and CLI before packaging. Dry-run is enabled by default and does not verify npm authentication.
+
+Configure npm trusted publishing for owner `ArneFfm`, repository `blockquote-agents`, and workflow filename `publish-npm.yml`.
+Leave the environment name empty. Allow direct publishing for this workflow.
+The workflow uses OIDC and provenance. It needs no npm token secret or dependency cache.
+See [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/).
+
+1. Update the version in `packages/sdk-js/package.json` and push the release changes to `main`.
+2. Run the workflow on `main` with `dry_run` enabled. Check the tests and package contents.
+3. Run it again with `dry_run` disabled to publish that revision.
+4. Verify the new version on npm and install it to check `blockquote --help`.
