@@ -5,9 +5,11 @@ Official integrations for [Blockquote](https://blockquote.io), an AI citability 
 ## Install
 
 - Skills: `npx skills add ArneFfm/blockquote-agents`
-- JavaScript SDK: `npm install blockquote-agents`
-- CLI: `npx --package blockquote-agents blockquote --help`
+- JavaScript SDK: `npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz`
+- CLI: Run `blockquote --help` after installing the JavaScript package.
 - Python SDK from source: `pip install "git+https://github.com/ArneFfm/blockquote-agents.git#subdirectory=packages/sdk-python"`
+
+npm registry publication is pending account two-factor verification. Python is available from source and the release wheel.
 
 The portable Agent Plugins manifest is `plugin.json`. Its `mcp.json` connects to the product MCP server.
 The two product skills cover API access and the scan/fix/re-scan workflow.
@@ -35,5 +37,5 @@ No client retries automatically.
 
 ```sh
 node --test packages/sdk-js/test.js
-python3 -m unittest discover -s packages/sdk-python -p 'test_*.py'
+python3 -m unittest discover -s packages/sdk-python/tests -p 'test_*.py'
 ```
