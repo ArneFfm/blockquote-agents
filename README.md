@@ -6,7 +6,7 @@ Official integrations for [Blockquote](https://blockquote.io), an AI citability 
 
 - Skills: `npx skills add ArneFfm/blockquote-agents`
 - JavaScript SDK: `npm install https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.0/blockquote-agents-0.1.0.tgz`
-- CLI: Run `npm exec -- blockquote --help` after installing the JavaScript package.
+- CLI: `python -m pip install --upgrade blockquote-agents`, then `blockquote --help`.
 - Python SDK: `pip install blockquote-agents`
 
 npm registry publication is pending account two-factor verification. Python is published on [PyPI](https://pypi.org/project/blockquote-agents/).

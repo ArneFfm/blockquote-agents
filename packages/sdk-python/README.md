@@ -1,4 +1,4 @@
-# Blockquote Python SDK
+# Blockquote Python SDK and CLI
 
 Official client for [Blockquote](https://blockquote.io). Requires Python 3.10 or later. No runtime dependencies.
 
@@ -38,3 +38,21 @@ Run tests from this package directory:
 ```sh
 python3 -m unittest discover -s tests
 ```
+
+## Command line
+
+The package installs the `blockquote` command. `python -m blockquote_agents` runs the same CLI.
+
+```sh
+python -m pip install --upgrade blockquote-agents
+blockquote --help
+blockquote read SCAN_ID
+blockquote scan https://example.com --idempotency-key UNIQUE_REQUEST_ID
+blockquote compare BASELINE_ID NEW_ID
+```
+
+Set `BLOCKQUOTE_API_KEY` for account access. Set `BLOCKQUOTE_TURNSTILE_TOKEN` only when you have a human verification token.
+Use `--refresh` with `scan` to request a fresh scan. Authentication and quota rules remain the same.
+The CLI prints JSON with `data`, `status`, and `headers`. It does not poll or retry.
+HTTP failures print server data, headers, status, and `retryAfter` to stderr with exit code 1.
+Other request failures print only their error type to avoid exposing credentials. Invalid arguments exit with code 2.
