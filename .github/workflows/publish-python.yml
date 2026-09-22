@@ -14,10 +14,19 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - name: Download the tested release wheel
+      - name: Check out the selected main revision
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Test SDK and CLI
+        working-directory: packages/sdk-python
+        run: python3 -m unittest discover -s tests
+      - name: Build the tested package
+        working-directory: packages/sdk-python
         run: |
-          mkdir dist
-          curl --fail --location --output dist/blockquote_agents-0.1.1-py3-none-any.whl https://github.com/ArneFfm/blockquote-agents/releases/download/v0.1.1/blockquote_agents-0.1.1-py3-none-any.whl
-          echo '9dfe5b7c4a12f0c3fac9ac32bc3c33fa5c8a0fd7b2becc4153af04b96a5113d4  dist/blockquote_agents-0.1.1-py3-none-any.whl' | sha256sum --check
+          python3 -m pip install build
+          python3 -m build
       - name: Publish through PyPI trusted publishing
         uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
+        with:
+          packages-dir: packages/sdk-python/dist/
